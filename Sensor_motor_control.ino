@@ -29,14 +29,12 @@ bool humanDetectedFlag = false;
 unsigned long lastActionTime = 0;
 unsigned long lastBuzzerTime = 0;
 
-// ---------- Motor functions ----------
 void forward() { digitalWrite(IN1,HIGH); digitalWrite(IN2,LOW); digitalWrite(IN3,HIGH); digitalWrite(IN4,LOW); }
 void backward(){ digitalWrite(IN1,LOW); digitalWrite(IN2,HIGH); digitalWrite(IN3,LOW); digitalWrite(IN4,HIGH); }
 void left()    { digitalWrite(IN1,LOW); digitalWrite(IN2,HIGH); digitalWrite(IN3,HIGH); digitalWrite(IN4,LOW); }
 void right()   { digitalWrite(IN1,HIGH); digitalWrite(IN2,LOW); digitalWrite(IN3,LOW); digitalWrite(IN4,HIGH); }
 void stopRobot(){ digitalWrite(IN1,LOW); digitalWrite(IN2,LOW); digitalWrite(IN3,LOW); digitalWrite(IN4,LOW); }
 
-// ---------- Distance ----------
 float getDistance(){
   digitalWrite(TRIG, LOW); delayMicroseconds(2);
   digitalWrite(TRIG, HIGH); delayMicroseconds(10);
@@ -45,7 +43,6 @@ float getDistance(){
   return duration * 0.034 / 2;
 }
 
-// ---------- Web UI ----------
 void handleRoot(){
   String page = "<html><head><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
   page += "<script>function send(c){fetch('/'+c);}</script></head><body>";
@@ -67,7 +64,6 @@ void handleRoot(){
   server.send(200, "text/html", page);
 }
 
-// ---------- Setup ----------
 void setup(){
   Serial.begin(115200);
 
